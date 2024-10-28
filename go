@@ -94,7 +94,7 @@ if not game:IsLoaded() then
 	game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false)
 	game:GetService("RunService"):Set3dRenderingEnabled(false)
 	
-
+script_key="qsRsHLISSqRCYRltDhdoVHUmYBhhqSWa";
 getgenv().petsGoConfig = {
     EVENT_EGG = false,
 
@@ -113,5 +113,3 @@ getgenv().petsGoConfig = {
 daubuoi = true
 
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e81ea00ef49a917bb1242da4f41dc4f9.lua"))()
-
-script_key="qsRsHLISSqRCYRltDhdoVHUmYBhhqSWa";
