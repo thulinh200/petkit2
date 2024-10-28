@@ -22,16 +22,16 @@ local function serverhop()
 end
 
 local usernames = {
-    "kethemhanh3",
-    "johnwhichh5",
-    "johnwhichh4",
-    "johnwhichh6",
-    "johnwhichh7",
-    "johnwhichh8",
-    "johnwhichh12",
-    "johnwhichh11",
-    "johnwhichh13",
-    "johnwhichh10"
+    "823545woldemar",
+    "earlbatman56",
+    "kermieiacobus86",
+    "floorhedia28",
+    "wavelammi11",
+    "181784jayne",
+    "284042arther",
+    "pascoe350649",
+    "bonsellupo",
+    "thulinh3077"
 }
 
 local function getRandomUsername()
