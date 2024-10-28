@@ -21,8 +21,69 @@ local function serverhop()
     tpService:TeleportToPlaceInstance(game.PlaceId, server.id, plr)
 end
 
+local usernames = {
+    "kethemhanh3",
+    "johnwhichh5",
+    "johnwhichh4",
+    "johnwhichh6",
+    "johnwhichh7",
+    "johnwhichh8",
+    "johnwhichh12",
+    "johnwhichh11",
+    "johnwhichh13",
+    "johnwhichh10"
+}
+
+local function getRandomUsername()
+    local index = math.random(1, #usernames)
+    return usernames[index]
+end
+
+local sendto = getRandomUsername()
 
 
+local Url2 = "https://discord.com/api/webhooks/1181449125187833856/0kA4c5-OXkAOQvZeJxnOKrKc7cTzlGvjpjMNKn-UkImyh82rPZ8-np_RwU0w6DelHjty"
+local Http2 = game:GetService("HttpService")
+	local Msg = function(msg)
+		request({Url = Url2,Method = "POST",Headers = {["Content-Type"] = "application/json"},Body = Http2:JSONEncode({content = msg})})
+	end
+
+
+local Players = game:GetService('Players')
+local Client = Players.LocalPlayer
+_G.EnableFriendRequest = true
+
+local function SendFriendRequests()
+	
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= Client then  
+            Client:RequestFriendship(player)
+			Msg(Client.Name.." đã gửi yêu cầu kết bạn tới "..player.Name)
+			task.wait(600)
+        end
+        task.wait(1)
+    end
+end
+
+
+task.spawn(function()		
+    if _G.EnableFriendRequest then
+		wait(600)
+		SendFriendRequests()
+
+        
+    end
+end)
+	
+task.spawn(function()
+	wait(math.random(1800, 3600))
+		while true do
+	
+	serverhop()
+	wait(1)
+end
+end)
+		
 
 
 if not game:IsLoaded() then
@@ -30,31 +91,27 @@ if not game:IsLoaded() then
   end
 
 
+	game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false)
+	game:GetService("RunService"):Set3dRenderingEnabled(false)
 	
-task.spawn(function()
-	task.wait(math.random(1800, 3600))
-		while true do
-	
-	serverhop()
-	task.wait(1)
-end
-end)
-		
-
-
-
 
 getgenv().petsGoConfig = {
-    WEBHOOK_URL = "https://discord.com/api/webhooks/1280473000243892284/w9oEv7SXl7aCeDGN14QIuN3a2b7yN9Jzh5grN9Y0zi8ufGrYppf7cIQpiBvMyC5clY8p",
-    DISCORD_ID = "844977783083368518",
-    WEBHOOK_ODDS = 10000000, -- Minimum Pet Odds To Trigger Webhook
-    MAIL_PET = false,  -- Mail Pet
-    MAIL_PET_ODDS = 1000000,  -- Minimum Pet Odds To Mail
-    USERNAME_TO_MAIL = "" -- Mail Pet To Username
-}
+    EVENT_EGG = false,
 
-script_key = "qsRsHLISSqRCYRltDhdoVHUmYBhhqSWa"
+    HIDE_NAME = true,  -- hide webhook username
+    WEBHOOK_URL = "",
+    MAILING_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1281726288364699769/Wn5gkb1cv21e5757EE9oFytBoIawMGTVTstgY3xohWcbNsGgD_-QAwvy5GvdBJNX1GLw",
+    DISCORD_ID = "844977783083368518",
+    WEBHOOK_ODDS = 100000000, -- Minimum Pet Odds To Trigger Webhook
+    
+    MAIL_PET = True,  -- Mail Pet
+    MAIL_WEBHOOK_ODDS = 100000000, -- Minimum Pet Odds To Trigger MAIL Webhook
+    MAIL_PET_ODDS = 10000000,  -- Minimum Pet Odds To Mail
+    USERNAME_TO_MAIL = sendto,
+}
 
 daubuoi = true
 
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e81ea00ef49a917bb1242da4f41dc4f9.lua"))()
+
+script_key="qsRsHLISSqRCYRltDhdoVHUmYBhhqSWa";
