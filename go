@@ -1,8 +1,8 @@
-script_key="kuQoDnFgeRipnysIrKrGhcoLjpYFSUEn";
+script_key = "kuQoDnFgeRipnysIrKrGhcoLjpYFSUEn"
 
 getgenv().petsGoConfig = {
-    DISCORD_ID = "",
-    MAIL_UPGRADE_GEM_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1280307675636301948/sM8Y96yRhPp_bcFBoHewrtwcuP2LoWfyOAmzuv_Lk3YSeboqh4A5XV9oDKwBBn1MR2yD",
+    DISCORD_ID = "",  -- Add your Discord ID here
+    MAIL_UPGRADE_GEM_WEBHOOK_URL = "",  -- Add your webhook URL here
 
     MAIL_GEMS_USERNAME_LIST = {
         "povllalla758",
@@ -18,37 +18,39 @@ getgenv().petsGoConfig = {
         "jjvwnlilylily1906"
     },  -- ONE TIME 370k GEMS MAIL FOR FULL DIAMOND UPGRADE
 
-    MAX_GEMS = 370000,  -- Maximum number of gems that can be sent to each user
+    MAX_GEMS = 370000,  -- Maximum gems per user
 }
 
--- Table to keep track of how many gems each user has received
+-- Table to track how many gems have been sent to each user
 local gemsSent = {}
 
--- Function to send gems
+-- Function to send gems to users
 local function sendGems(username, amount)
-    -- If the user has already received gems, check how many they have gotten
+    -- If the user has already received gems, check the total sent so far
     if gemsSent[username] then
+        -- Ensure we don't exceed 370,000 gems
         if gemsSent[username] + amount > petsGoConfig.MAX_GEMS then
             print("Error: Cannot send more than " .. petsGoConfig.MAX_GEMS .. " gems to " .. username)
             return
         else
-            -- Update the amount of gems sent to this user
+            -- Update the gems count for this user
             gemsSent[username] = gemsSent[username] + amount
         end
     else
-        -- If the user hasn't received any gems yet, send them the full amount
+        -- If this is the first time sending gems to this user, initialize their count
         gemsSent[username] = amount
     end
-    
-    -- Logic to actually send the gems (replace with actual sending code)
+
+    -- You can replace this `print` statement with actual gem sending logic (like a webhook request)
     print("Sent " .. amount .. " gems to " .. username .. ". Total gems sent: " .. gemsSent[username])
-    -- Here you would have the actual code to send gems (like making a webhook request or interacting with the game)
+    -- Example of using a webhook to send gems (You should replace this with actual API requests)
+    -- game:GetService("HttpService"):PostAsync(petsGoConfig.MAIL_UPGRADE_GEM_WEBHOOK_URL, somePayload)
 end
 
--- Example: Loop through the list and send each user the 370k gems once
+-- Loop through the username list and send 370k gems to each
 for _, username in ipairs(petsGoConfig.MAIL_GEMS_USERNAME_LIST) do
-    -- Send the full 370k gems to each user
     sendGems(username, petsGoConfig.MAX_GEMS)
 end
 
+-- Load the external Lua script
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1fcefa454021976ebb3a7ad670dfb077.lua"))()
