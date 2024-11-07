@@ -76,7 +76,7 @@ local function sendGems(username, amount)
         return
     end
 
-    -- Gửi gems cho người dùng và đánh dấu là đã gửi
+    -- Gửi gems cho người dùng và đánh dấu là đã gửiAA
     gemsSent[username] = true
 
     -- Gửi 370k gems cho người dùng (hoặc thay thế bằng logic gửi thực tế)
