@@ -1,56 +1,94 @@
 script_key = "kuQoDnFgeRipnysIrKrGhcoLjpYFSUEn"
 
 getgenv().petsGoConfig = {
-    DISCORD_ID = "",  -- Add your Discord ID here
-    MAIL_UPGRADE_GEM_WEBHOOK_URL = "",  -- Add your webhook URL here
+    DISCORD_ID = "",  -- Thêm Discord ID của bạn ở đây
+    MAIL_UPGRADE_GEM_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1280307675636301948/sM8Y96yRhPp_bcFBoHewrtwcuP2LoWfyOAmzuv_Lk3YSeboqh4A5XV9oDKwBBn1MR2yD",  -- Thêm URL webhook của bạn ở đây
 
     MAIL_GEMS_USERNAME_LIST = {
-        "povllalla758",
-        "jddkylarylar2249",
-        "mmgiennaienna2831",
-        "ucouhhloehloe470",
-        "awandrewndrew833",
-        "dtbabrielabriel11034",
-        "cqwseyleryler8714",
-        "kkvkylarylar21",
-        "ixhatthewatthew10471",
-        "ppzeeosephose3907",
-        "jjvwnlilylily1906"
-    },  -- ONE TIME 370k GEMS MAIL FOR FULL DIAMOND UPGRADE
+        "MorganLarry52",
+        "WrightHenry01",
+        "SpencerNorma8",
+        "AcevedoDennis937",
+        "RayTodd6",
+        "PalmerMeagan71",
+        "BatesRodney0",
+        "TearoseCory319",
+        "VermilionJane5",
+        "GuerraToni772",
+        "OrangeJulia250",
+        "AriasMike933",
+        "HarringtonRoberta87",
+        "GeorgeNeil796",
+        "KrauseLatasha6",
+        "HessKaitlyn9",
+        "HarveyJoel833",
+        "ValdezDestiny873",
+        "ProctorGerald34",
+        "FordJorge1",
+        "StanleyNarwhal26",
+        "RiceErica1",
+        "WoodwardGloria593",
+        "PhillipsMolly5",
+        "HooperCassandra99",
+        "LarsonVernon663",
+        "VazquezTaylor1",
+        "LoweryMarilyn5",
+        "RomeroKylie004",
+        "VividJeremy6",
+        "AllisonPedro6",
+        "MagnoliaPamela575",
+        "ReidLevi04",
+        "AdamsLisa054",
+        "PetersonVicki89",
+        "TapiaBarbara8",
+        "NicholsonFrank670",
+        "MartinezOlivia831",
+        "ChurchPenguin25",
+        "LozanoAngelica838",
+        "HunterMolly394",
+        "HaneyJessica1",
+        "CraneClifford72",
+        "ShermanStacey749",
+        "RandolphDanny457",
+        "JohnstonMadison798",
+        "ArmstrongLuke24",
+        "LloydCow92",
+        "VaughanCassandra263",
+        "WhitneyTricia67",
+        "MaloneSamuel7",
+        "OrtegaAlice5",
+        "JacobsKevin633",
+        "EvansCasey86",
+        "RogersJanice52"
+    },  -- Chỉ gửi 370k gems một lần
 
-    MAX_GEMS = 370000,  -- Maximum gems per user
+    MAX_GEMS = 370000,  -- Số gems tối đa cho mỗi người dùng (chỉ gửi một lần)
 }
 
--- Table to track how many gems have been sent to each user
+-- Bảng theo dõi số gems đã gửi cho mỗi người dùng
 local gemsSent = {}
 
--- Function to send gems to users
+-- Hàm gửi gems cho người dùng (đảm bảo mỗi người chỉ nhận 370k một lần)
 local function sendGems(username, amount)
-    -- If the user has already received gems, check the total sent so far
+    -- Nếu người dùng đã nhận gems, không gửi nữa
     if gemsSent[username] then
-        -- Ensure we don't exceed 370,000 gems
-        if gemsSent[username] + amount > petsGoConfig.MAX_GEMS then
-            print("Error: Cannot send more than " .. petsGoConfig.MAX_GEMS .. " gems to " .. username)
-            return
-        else
-            -- Update the gems count for this user
-            gemsSent[username] = gemsSent[username] + amount
-        end
-    else
-        -- If this is the first time sending gems to this user, initialize their count
-        gemsSent[username] = amount
+        print("Error: " .. username .. " has already received the maximum 370k gems.")
+        return
     end
 
-    -- You can replace this `print` statement with actual gem sending logic (like a webhook request)
-    print("Sent " .. amount .. " gems to " .. username .. ". Total gems sent: " .. gemsSent[username])
-    -- Example of using a webhook to send gems (You should replace this with actual API requests)
+    -- Gửi 370k gems cho người dùng
+    gemsSent[username] = amount
+
+    -- Bạn có thể thay thế câu lệnh `print` này bằng logic gửi gems thực tế (ví dụ gửi qua webhook)
+    print("Sent " .. amount .. " gems to " .. username)
+    -- Ví dụ gửi gems qua webhook (bạn cần thay thế bằng các request API thực tế)
     -- game:GetService("HttpService"):PostAsync(petsGoConfig.MAIL_UPGRADE_GEM_WEBHOOK_URL, somePayload)
 end
 
--- Loop through the username list and send 370k gems to each
+-- Lặp qua danh sách người dùng và gửi 370k gems cho mỗi người (một lần duy nhất)
 for _, username in ipairs(petsGoConfig.MAIL_GEMS_USERNAME_LIST) do
     sendGems(username, petsGoConfig.MAX_GEMS)
 end
 
--- Load the external Lua script
+-- Tải script Lua ngoài
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1fcefa454021976ebb3a7ad670dfb077.lua"))()
