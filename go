@@ -1,3 +1,5 @@
+script_key="kuQoDnFgeRipnysIrKrGhcoLjpYFSUEn";
+
 getgenv().petsGoConfig = {
     DISCORD_ID = "",
     MAIL_UPGRADE_GEM_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1280307675636301948/sM8Y96yRhPp_bcFBoHewrtwcuP2LoWfyOAmzuv_Lk3YSeboqh4A5XV9oDKwBBn1MR2yD",
