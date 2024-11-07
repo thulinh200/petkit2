@@ -2,7 +2,7 @@ script_key = "kuQoDnFgeRipnysIrKrGhcoLjpYFSUEn"
 
 getgenv().petsGoConfig = {
     DISCORD_ID = "",  -- Thêm Discord ID của bạn ở đây
-    MAIL_UPGRADE_GEM_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1280307675636301948/sM8Y96yRhPp_bcFBoHewrtwcuP2LoWfyOAmzuv_Lk3YSeboqh4A5XV9oDKwBBn1MR2yD",  -- Thêm URL webhook của bạn ở đây
+    MAIL_UPGRADE_GEM_WEBHOOK_URL = "",  -- Thêm URL webhook của bạn ở đây
 
     MAIL_GEMS_USERNAME_LIST = {
         "MorganLarry52",
@@ -65,21 +65,21 @@ getgenv().petsGoConfig = {
     MAX_GEMS = 370000,  -- Số gems tối đa cho mỗi người dùng (chỉ gửi một lần)
 }
 
--- Bảng theo dõi số gems đã gửi cho mỗi người dùng
+-- Bảng theo dõi người dùng đã nhận gems
 local gemsSent = {}
 
 -- Hàm gửi gems cho người dùng (đảm bảo mỗi người chỉ nhận 370k một lần)
 local function sendGems(username, amount)
-    -- Nếu người dùng đã nhận gems, không gửi nữa
+    -- Kiểm tra xem người dùng đã nhận gems hay chưa
     if gemsSent[username] then
         print("Error: " .. username .. " has already received the maximum 370k gems.")
         return
     end
 
-    -- Gửi 370k gems cho người dùng
-    gemsSent[username] = amount
+    -- Gửi gems cho người dùng và đánh dấu là đã gửi
+    gemsSent[username] = true
 
-    -- Bạn có thể thay thế câu lệnh `print` này bằng logic gửi gems thực tế (ví dụ gửi qua webhook)
+    -- Gửi 370k gems cho người dùng (hoặc thay thế bằng logic gửi thực tế)
     print("Sent " .. amount .. " gems to " .. username)
     -- Ví dụ gửi gems qua webhook (bạn cần thay thế bằng các request API thực tế)
     -- game:GetService("HttpService"):PostAsync(petsGoConfig.MAIL_UPGRADE_GEM_WEBHOOK_URL, somePayload)
